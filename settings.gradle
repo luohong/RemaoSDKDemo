@@ -1,0 +1,12 @@
+rootProject.name = "RemaoSDKDemo"
+
+include ':app'
+include ':QsbkCore'
+include ':VideoTools'
+include ':QsbkLive'
+include ':QsbkPay'
+
+project(':QsbkCore').projectDir = new File('remix/QsbkCore')
+project(':VideoTools').projectDir = new File('remix/VideoTools')
+project(':QsbkLive').projectDir = new File('remix/QsbkLive')
+project(':QsbkPay').projectDir = new File('remix/QsbkPay')
