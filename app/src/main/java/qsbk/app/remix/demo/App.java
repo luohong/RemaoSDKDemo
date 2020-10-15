@@ -5,6 +5,8 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
+import qsbk.app.remao.sdk.RemaoSDK;
+
 public class App extends Application {
 
     @Override
