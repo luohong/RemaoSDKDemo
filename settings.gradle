@@ -1,3 +1,4 @@
-rootProject.name = "RemaoSDKDemo"
-
 include ':app'
+
+//include ':QsbkLive'
+//project(':QsbkLive').projectDir = new File('remix/QsbkLive')
