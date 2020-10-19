@@ -10,37 +10,57 @@ Gradle编译环境（AndroidStudio）
 > implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
 
 ``` 
-api 'androidx.legacy:legacy-support-v4:1.0.0'
-api 'androidx.appcompat:appcompat:1.2.0'
-api 'androidx.recyclerview:recyclerview:1.1.0'
+api fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+api 'com.android.support:support-v4:28.0.0'
+api 'com.android.support:appcompat-v7:28.0.0'
+api 'com.android.support:recyclerview-v7:28.0.0'
+api 'com.android.support.constraint:constraint-layout:2.0.1'
+api 'com.android.support:design:28.0.0'
+api 'com.android.support:gridlayout-v7:28.0.0'
+
 api 'com.r0adkll:slidableactivity:2.0.6'
 api 'com.android.volley:volley:1.1.1'
-api 'com.facebook.fresco:fresco:2.3.0'
-api 'com.facebook.fresco:animated-base:2.3.0'
-api 'com.facebook.fresco:animated-gif:2.3.0'
-api 'com.facebook.fresco:animated-webp:2.3.0'
+api 'com.facebook.fresco:fresco:1.12.1'
+api 'com.facebook.fresco:animated-base:1.12.1'
+api 'com.facebook.fresco:animated-gif:1.12.1'
+api 'com.facebook.fresco:animated-webp:1.12.1'
 api 'com.google.code.gson:gson:2.8.6'
 api 'cz.msebera.android:httpclient:4.4.1.2'
 api 'org.msgpack:jackson-dataformat-msgpack:0.8.20'
 api 'com.qiniu:qiniu-android-sdk:7.3.15'
 api 'com.squareup.okhttp3:okhttp:3.12.11' // 警告：更新版本以后导致Android4.x手机出现SSL ExceptionInInitializerError（启动闪退）
-api 'com.facebook.flipper:flipper-network-plugin:0.51.0'
 api 'com.kaopiz:kprogresshud:1.2.0'
 api 'com.liulishuo.okdownload:okdownload:1.0.7'
 api 'com.liulishuo.okdownload:okhttp:1.0.7'
-api 'com.airbnb.android:lottie:3.4.1'
-api 'androidx.constraintlayout:constraintlayout:1.1.3'
-api 'com.google.android.material:material:1.2.0'
-api 'androidx.gridlayout:gridlayout:1.0.0'
+api 'com.airbnb.android:lottie:2.7.0'
 api 'com.qiniu:happy-dns:0.2.11'
 api 'com.plattysoft.leonids:LeonidsLib:1.3.2'
 api 'com.github.yyued:SVGAPlayer-Android:2.5.3'
 api 'org.adw.library:discrete-seekbar:1.0.1'
 api 'com.contrarywind:Android-PickerView:4.1.9'
-api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.3'
 
+api 'com.bytedance.applog:RangersAppLog-All-cn:5.3.0'
 api 'com.alibaba:arouter-api:1.5.0'
 annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+```
+
+- 在项目根目录build.gradle中添加classpath
+```
+defaultConfig {
+        // ...
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+        manifestPlaceholders.put("APPLOG_SCHEME", "rangersapplog.6daa4b17b8965a4f") // applog统计
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.squareup.okhttp3:okhttp:3.12.11'
+    }
+
 ```
 
 ### 2.初始化SDK
@@ -63,14 +83,7 @@ RemaoSDK.login("test", "123", new Callback(){
 });
 ```
 
-### 4.接入微信支付
-- 将 WXPayEntryActivity extends qsbk.app.pay.wxapi.WXPayEntryActivity 
-- 发起微信支付前需要设置APP_ID. PayConstants.WECHAT_APP_ID = "wechat_app_id";
-- 在 WXPayEntryActivity 的 handleResp 方法处理自己的微信支付响应
-- 删除支付宝和微信的jar包（alipaySdk-20180601.jar，libammsdk.jar）
-
-
-### 5.代码混淆
+### 4.代码混淆
 如果你启用了混淆，请在你的proguard-rules.pro中加入如下代码：
 
 ```

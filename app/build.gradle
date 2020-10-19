@@ -80,7 +80,7 @@ dependencies {
     api 'com.github.yyued:SVGAPlayer-Android:2.5.3'
     api 'org.adw.library:discrete-seekbar:1.0.1'
     api 'com.contrarywind:Android-PickerView:4.1.9'
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.3'
+//    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.5.3'
 
     api 'com.bytedance.applog:RangersAppLog-All-cn:5.3.0'
     api 'com.alibaba:arouter-api:1.5.0'
