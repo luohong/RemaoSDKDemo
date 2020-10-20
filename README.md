@@ -44,7 +44,14 @@ api 'com.alibaba:arouter-api:1.5.0'
 annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 ```
 
+- 在app目录build.gradle中添加plugin
+
+```
+apply plugin: 'com.bytedance.std.tracker'
+```
+
 - 在项目根目录build.gradle中添加classpath
+
 ```
 defaultConfig {
         // ...
