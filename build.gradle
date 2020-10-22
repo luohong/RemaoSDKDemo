@@ -19,7 +19,7 @@ buildscript {
 }
 
 ext {
-    localCompileSdkVersion = 28
+    localCompileSdkVersion = 27
 }
 
 allprojects {
